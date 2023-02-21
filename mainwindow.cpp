@@ -23,15 +23,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::onGraphicsButtonClicked()
 {
-    dialog = new GraphicsEditorWindow(this);
-    connect(dialog, &QDialog::finished, this, &MainWindow::onCloseGraphsEditor);
-    dialog->show();
-}
-
-void MainWindow::onCloseGraphsEditor(int finished)
-{
-    Q_UNUSED(finished);
-    if (dialog)
-        delete dialog;
-    dialog = nullptr;
+    GraphicsEditorWindow dialog(this);
+    dialog.exec();
 }

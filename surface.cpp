@@ -26,7 +26,8 @@ Surface::Surface(Q3DSurface* graph)
 
 Surface::~Surface()
 {
-    delete graph;
+  //delete series;
+  //delete graph;
 }
 
 void Surface::createGraph()

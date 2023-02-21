@@ -1,21 +1,15 @@
 #ifndef BASEGRAPH_H
 #define BASEGRAPH_H
 
-#include <QObject>
+#include <utils/iodata.h>
 
-namespace graphs
+class BaseGraph
 {
-    class BaseGraph : public QObject
-    {
-        Q_OBJECT
-    public:
-        explicit BaseGraph(QObject *parent = nullptr);
-        virtual ~BaseGraph();
+public:
+    BaseGraph();
+    virtual ~BaseGraph();
 
-        virtual double Calculate() = 0;
-    private:
-
-    };
-}
+    virtual bool Calculate(const utils::IOData& input, utils::IOData& output) = 0;
+};
 
 #endif // BASEGRAPH_H

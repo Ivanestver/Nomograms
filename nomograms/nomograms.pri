@@ -1,7 +1,7 @@
 HEADERS += \
     $$PWD/basegraph.h \
-    $$PWD/surface.h
+    $$PWD/ndimgraph.h
 
 SOURCES += \
     $$PWD/basegraph.cpp \
-    $$PWD/surface.cpp
+    $$PWD/ndimgraph.cpp

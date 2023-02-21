@@ -8,6 +8,7 @@
 #include "qobjectdefs.h"
 
 #include <QObject>
+#include <memory>
 
 using namespace QtDataVisualization;
 

@@ -1,27 +1,45 @@
+#include "dlgaddnewgraph.h"
 #include "graphicseditorwindow.h"
 #include "surface.h"
 #include "ui_graphicseditorwindow.h"
 
-#include <Q3DSurface>
-
-using namespace QtDataVisualization;
+#include <QMenuBar>
 
 GraphicsEditorWindow::GraphicsEditorWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GraphicsEditorWindow)
 {
     ui->setupUi(this);
-    Q3DSurface* surface = new Q3DSurface();
-    auto* widget = QWidget::createWindowContainer(surface);
+
+    createMenu();
+
+    /*Q3DSurface* s = new Q3DSurface();
+    auto* widget = QWidget::createWindowContainer(s);
     ui->verticalLayout->addWidget(widget);
     ui->verticalLayout->setStretch(0, 1);
     ui->verticalLayout->setStretch(1, 2);
 
-    Surface* s = new Surface(surface);
-
+    surface = new Surface(s);*/
 }
 
 GraphicsEditorWindow::~GraphicsEditorWindow()
 {
     delete ui;
+    //delete surface;
+}
+
+void GraphicsEditorWindow::createMenu()
+{
+  auto* menuBar = new QMenuBar();
+  auto* menu = new QMenu("Редактор");
+  menuBar->addMenu(menu);
+  auto* addNewGraphAction = menu->addAction("Добавить новый график");
+  connect(addNewGraphAction, &QAction::triggered, this, &GraphicsEditorWindow::onAddNewGraphClicked);
+  this->layout()->setMenuBar(menuBar);
+}
+
+void GraphicsEditorWindow::onAddNewGraphClicked()
+{
+  DlgAddNewGraph dlg(this);
+  dlg.exec();
 }
