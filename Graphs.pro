@@ -1,4 +1,4 @@
-QT       += core gui widgets datavisualization
+QT       += core gui widgets datavisualization charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -40,7 +40,7 @@ TRANSLATIONS += \
     Graphs_en_US.ts
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
+qnx: target.path = /tmp/$${TARGET}/bin $$[QT_INSTALL_EXAMPLES]/charts/multiaxis
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 

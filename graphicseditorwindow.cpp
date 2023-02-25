@@ -40,6 +40,6 @@ void GraphicsEditorWindow::createMenu()
 
 void GraphicsEditorWindow::onAddNewGraphClicked()
 {
-  DlgAddNewGraph dlg(this);
-  dlg.exec();
+  auto dlg = std::make_unique<DlgAddNewGraph>(this);
+  dlg->exec();
 }

@@ -5,6 +5,7 @@
 #include <Q3DSurface>
 #include <QStringListModel>
 #include <QWidget>
+#include <memory>
 
 using namespace QtDataVisualization;
 
@@ -23,6 +24,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::onGraphicsButtonClicked()
 {
-    GraphicsEditorWindow dialog(this);
-    dialog.exec();
+    auto dialog = std::make_unique<GraphicsEditorWindow>(this);
+    dialog->exec();
 }

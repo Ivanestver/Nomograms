@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <nomograms/ndimgraph.h>
+#include <QFileDialog>
 
 namespace Ui {
   class DlgAddNewGraph;
@@ -18,9 +19,12 @@ public:
 
 private:
   void onChooseFileBtnClicked();
+  void showCoordinateAxises();
+  void onFilePathReceived();
 
 private:
   Ui::DlgAddNewGraph *ui;
+  QFileDialog* dlg = nullptr;
 };
 
 #endif // DLGADDNEWGRAPH_H
