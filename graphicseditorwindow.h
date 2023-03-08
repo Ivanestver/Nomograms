@@ -1,7 +1,7 @@
 #ifndef GRAPHICSEDITORWINDOW_H
 #define GRAPHICSEDITORWINDOW_H
 
-#include "surface.h"
+#include "utils/threedgraphview.h"
 
 #include <QDialog>
 #include <Q3DSurface>
@@ -28,7 +28,7 @@ private Q_SLOTS:
 
 private:
     Ui::GraphicsEditorWindow *ui;
-    Surface* surface;
+    utils::ThreeDGraphView* surface;
 };
 
 #endif // GRAPHICSEDITORWINDOW_H

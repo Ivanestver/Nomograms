@@ -1,6 +1,6 @@
 #include "graphicseditorwindow.h"
 #include "mainwindow.h"
-#include "surface.h"
+#include "utils/threedgraphview.h"
 #include "ui_mainwindow.h"
 #include <Q3DSurface>
 #include <QStringListModel>

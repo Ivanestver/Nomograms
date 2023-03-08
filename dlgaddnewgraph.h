@@ -25,6 +25,7 @@ private:
 private:
   Ui::DlgAddNewGraph *ui;
   QFileDialog* dlg = nullptr;
+  QWidget* graphWidget = nullptr;
 };
 
 #endif // DLGADDNEWGRAPH_H

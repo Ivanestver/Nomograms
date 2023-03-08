@@ -22,14 +22,12 @@ SOURCES += \
     dlgaddnewgraph.cpp \
     graphicseditorwindow.cpp \
     main.cpp \
-    mainwindow.cpp \
-    surface.cpp
+    mainwindow.cpp
 
 HEADERS += \
     dlgaddnewgraph.h \
     graphicseditorwindow.h \
-    mainwindow.h \
-    surface.h
+    mainwindow.h
 
 FORMS += \
     dlgaddnewgraph.ui \

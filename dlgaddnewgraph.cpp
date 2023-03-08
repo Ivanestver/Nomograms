@@ -4,12 +4,14 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <Q3DSurface>
+#include <QProgressBar>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QCategoryAxis>
 
+#include <utils/graphviewfabric.h>
 #include <utils/parametersstorage.h>
 
 QT_CHARTS_USE_NAMESPACE
@@ -27,6 +29,8 @@ DlgAddNewGraph::DlgAddNewGraph(QWidget *parent) :
 
 DlgAddNewGraph::~DlgAddNewGraph()
 {
+  ui->verticalLayout->removeWidget(graphWidget);
+  delete graphWidget;
   delete ui;
   if (dlg)
     delete dlg;
@@ -81,32 +85,21 @@ void DlgAddNewGraph::onFilePathReceived()
 
         storage.x.push_back(params[0].toDouble());
         storage.y.push_back(params[1].toDouble());
+        std::vector<double> ps;
         for (int i = 2; i < params.size(); i++)
-          storage.params[rowsCount].push_back(params[i].toDouble());
+          ps.push_back(params[i].toDouble());
+
+        if (!ps.empty())
+          storage.params.push_back(ps);
         rowsCount++;
     }
 
-    auto* charts = new QChart();
-    charts->legend()->hide();
-    auto* axisX = new QValueAxis(charts);
-    axisX->setTickCount(10);
-    auto* axisY = new QValueAxis(charts);
-    axisY->setTickCount(10);
-    //charts->addAxis(axisX, Qt::AlignHCenter);
-    //charts->addAxis(axisY, Qt::AlignVCenter);
-    auto* series = new QSplineSeries();
-    for (size_t i = 0; i < storage.x.size(); i++)
-      *series << QPointF(storage.x[i], storage.y[i]);
-
-    series->attachAxis(axisX);
-    series->attachAxis(axisY);
-
-    charts->addSeries(series);
-
-    QChartView* chartView = new QChartView(charts);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    ui->verticalLayout->addWidget(chartView);
-
+    const auto* graphFabric = utils::GraphViewFabric::Instance();
+    auto graph = graphFabric->GetGraphView(storage.params.size());
+    ui->verticalLayout->removeWidget(graphWidget);
+    delete graphWidget;
+    graphWidget = graph->CreateGraph(storage);
+    ui->verticalLayout->addWidget(graphWidget);
   }
   catch (std::invalid_argument& e)
   {

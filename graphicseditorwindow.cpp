@@ -1,25 +1,21 @@
 #include "dlgaddnewgraph.h"
 #include "graphicseditorwindow.h"
-#include "surface.h"
+#include "utils/threedgraphview.h"
 #include "ui_graphicseditorwindow.h"
 
 #include <QMenuBar>
 
-GraphicsEditorWindow::GraphicsEditorWindow(QWidget *parent) :
+GraphicsEditorWindow::GraphicsEditorWindow(QWidget* parent) :
     QDialog(parent),
     ui(new Ui::GraphicsEditorWindow)
 {
     ui->setupUi(this);
-
     createMenu();
 
     /*Q3DSurface* s = new Q3DSurface();
-    auto* widget = QWidget::createWindowContainer(s);
     ui->verticalLayout->addWidget(widget);
     ui->verticalLayout->setStretch(0, 1);
-    ui->verticalLayout->setStretch(1, 2);
-
-    surface = new Surface(s);*/
+    ui->verticalLayout->setStretch(1, 2);*/
 }
 
 GraphicsEditorWindow::~GraphicsEditorWindow()
